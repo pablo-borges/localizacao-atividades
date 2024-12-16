@@ -1,171 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Formulário para capturar e enviar localização de atividades.">
     <title>Capturar Localização</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos Modernos */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #007BFF;
-        }
-
-        p {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-align: left;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        a#link-localizacao {
-            display: block;
-            margin: 1rem 0;
-            color: #007BFF;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        a#link-localizacao:hover {
-            text-decoration: underline;
-        }
-
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            background-color: #007BFF;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 1.25rem;
-            }
-
-            input[type="text"], button {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <h1>Localização de Atividade</h1>
-        <p>
-            Orientação:<br>
-            1º Colocar o Número do Protocolo<br>
-            2º Clicar em Capturar localização<br>
-            3º Clicar em Enviar para Supervisão
-        </p>
+<p>Orientação:<br>1º Colocar o Número do Potocolo<br>2º Clicar em Capturar localização<br>3º Clicar em Enviar para Supervisão</p>
         <form id="form-localizacao">
             <label for="protocolo">Número do Protocolo:</label>
-            <input type="text" id="protocolo" name="protocolo" placeholder="Digite o número" required>
+            <input type="text" id="protocolo" name="protocolo" required><br><br>
 
-            <a id="link-localizacao" href="#" target="_blank" style="display:none;">Abrir no Google Maps</a>
+            <label for="localizacao">Localização:</label>
+            <!-- Campo para exibir o link da localização -->
+            <a id="link-localizacao" href="#" target="_blank" style="display:none;">Abrir no Google Maps</a><br><br>
 
             <button type="button" onclick="capturarLocalizacao()">Capturar Localização</button>
             <button type="button" onclick="enviarParaWhatsApp()">Enviar para Supervisão</button>
         </form>
     </div>
 
-    <script>
-        function capturarLocalizacao() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const link = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                    const linkLocalizacao = document.getElementById('link-localizacao');
-                    linkLocalizacao.href = link;
-                    linkLocalizacao.style.display = 'block';
-                    alert('Localização capturada com sucesso!');
-                }, function () {
-                    alert('Erro ao capturar localização. Verifique as permissões do navegador.');
-                });
-            } else {
-                alert('Geolocalização não é suportada neste navegador.');
-            }
-        }
-
-        function enviarParaWhatsApp() {
-            const protocolo = document.getElementById('protocolo').value.trim();
-            const linkLocalizacao = document.getElementById('link-localizacao').href;
-
-            if (!protocolo) {
-                alert('Por favor, preencha o número do protocolo antes de enviar.');
-                return;
-            }
-
-            if (linkLocalizacao === '#') {
-                alert('Por favor, capture a localização antes de enviar.');
-                return;
-            }
-
-            const mensagem = `Protocolo: ${protocolo}%0ALocalização: ${linkLocalizacao}`;
-            const linkWhatsApp = `https://api.whatsapp.com/send?text=${mensagem}`;
-
-            window.open(linkWhatsApp, '_blank');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
