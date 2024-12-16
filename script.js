@@ -40,7 +40,7 @@ function enviarParaWhatsApp() {
     }
 
     // Monta a mensagem
-    const mensagem = `Oi, segue localizalção de minha atividade!:\n\nProtocolo: ${protocolo}\nLocalização: ${linkLocalizacao}`;
+    const mensagem = `Oi, segue localização de minha atividade!:\n\nProtocolo: ${protocolo}\nLocalização: ${linkLocalizacao}`;
     
     // Número de WhatsApp com o código do país e DDD
     const numeroWhatsApp = "555193152514";
