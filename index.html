@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar Localização</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Localização de Atividade</h1>
+<p>Orientação:<br>1º Colocar o Número do Potocolo<br>2º Clicar em Capturar localização<br>3º Clicar em Enviar para Supervisão</p>
+        <form id="form-localizacao">
+            <label for="protocolo">Número do Protocolo:</label>
+            <input type="text" id="protocolo" name="protocolo" required><br><br>
+
+            <label for="localizacao">Localização:</label>
+            <!-- Campo para exibir o link da localização -->
+            <a id="link-localizacao" href="#" target="_blank" style="display:none;">Abrir no Google Maps</a><br><br>
+
+            <button type="button" onclick="capturarLocalizacao()">Capturar Localização</button>
+            <button type="button" onclick="enviarParaWhatsApp()">Enviar para Supervisão</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
